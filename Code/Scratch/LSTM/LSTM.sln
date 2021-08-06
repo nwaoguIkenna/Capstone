@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LSTM", "LSTM.pyproj", "{6BD9E294-6D32-4755-8C9B-3556C4F0BDDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6BD9E294-6D32-4755-8C9B-3556C4F0BDDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BD9E294-6D32-4755-8C9B-3556C4F0BDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D442D280-8805-4646-B3D1-12A9D90685D1}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,74 @@
+# Python package
+# Create and test a Python package on multiple Python versions.
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+
+trigger:
+ branches:
+   include:
+   - master
+ paths:
+   include:
+       - Code/HandwritingSmoother/*
+   exclude:
+     - '*'
+     - Code/HandwritingSmoother/*.pyproj
+     - Code/HandwritingSmoother/*.sln
+     - Code/HandwritingSmoother/.vs/*
+
+pool:
+  vmImage: 'ubuntu-latest'
+strategy:
+  matrix:
+    Python37:
+      python.version: '3.7'
+    Python38:
+      python.version: '3.8'
+
+variables:
+  baseFolder: $(Build.SourcesDirectory)/Code/HandwritingSmoother
+  finalModuleName: 'pywritesmooth'
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
+
+- script: |
+    python -m pip install --upgrade pip setuptools wheel
+  displayName: 'Install setup tools'
+
+- script: |
+    pip install -r $(baseFolder)/requirements.txt
+  displayName: 'Install dependencies'
+
+- script: |
+    cd $(baseFolder)
+    python setup.py sdist bdist_wheel
+  displayName: 'Artifact creation'
+
+- task: TwineAuthenticate@1
+  inputs:
+    artifactFeed: 'smucapstone'
+
+- task: CopyFiles@1
+  inputs:
+     SourceFolder: Code/HandwritingSmoother/dist
+     targetFolder: $(Build.ArtifactStagingDirectory)
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: $(finalModuleName)
+
+- task: DownloadBuildArtifacts@0
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: $(finalModuleName)
+    itemPattern: '**'
+    downloadPath: '$(System.ArtifactsDirectory)' 
+- script: |
+    python -m pip install --upgrade pip
+    find $(System.ArtifactsDirectory)/*.whl | xargs pip install
+  displayName: 'Test module installation'

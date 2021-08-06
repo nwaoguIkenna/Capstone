@@ -1,0 +1,12 @@
+# Copy Github repo to this repo
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: gitsync@1
+  inputs:
+    GitRepoUrl: 'https://github.com/EdwardAF-IT/Capstone.git'

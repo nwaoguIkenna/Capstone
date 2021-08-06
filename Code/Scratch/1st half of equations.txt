@@ -1,0 +1,102 @@
+1. mu_t^j = ^muhat_t^j
+
+  j        j
+µ  = μhat
+  t        t
+
+2. sigma_t^j = exp (sigmahat_t^j)
+
+     j      /        j\
+σ  =    exp|σhat |
+     t      \        t/
+
+3. rho_t^j = tanh(rhohat_t^j)
+
+  j        /      j \
+ρ   = tanh |ρhat  |
+  t        \      t /
+
+4. e_t setelement (0,1)
+
+e  ∈ (0,1)
+ t
+
+5. pi^j setelement (0,1) , sum(pi^j, j) = 1
+
+__j
+||  ∈ (0,1) ,            
+  t
+
+
+=====
+\     __j
+ >    ||  = 1
+/       t
+=====
+  j
+
+
+6. mu_t^j setelement doublestruck R
+
+ j
+μ ∈ ℝ
+ t
+
+7. sigma_t^j > 0
+
+ j
+σ  > 0
+ t
+
+8. rho_t^j setelement (-1,1)
+
+ j
+ρ    ∈ (-1,1)
+ t
+
+9. Pr(x_(t+1)|y_t) = sum(pi^j*N(x_(t+1)|u_t^j, o_t^j, p_t^j), j = 1 .. M)  
+
+Pr(x  	|y) =   M				   
+	t+1   t   =====        					 / e      if (x   ) = 1
+			  \    	__j     	 j   j   j   |  t        ( t+1)3  
+			   >    ||   N(x   |μ , σ , ρ )  <    
+			  /		  t		t+1  t 	 t   t   | 1-e	  otherwise
+			  =====			                 \    t
+			  j = 1
+
+10. if (x + 1)3 = 1
+         f
+
+
+46. o(t,u) = sum(a_t^k*exp(-b_t^k*(k_t^k - u)^2), k = 1 .. K)
+
+47. w_t = sum(o(t,u)*c_u, u = 1 .. U)
+
+48. (ahat_t, bhat_t, khat_t) = W_(h^1*p)*h_t^1 + b_p
+
+49. a_t = exp(ahat_t)
+
+50. b_t = exp(bhat_t)
+
+51. k_t = k_(t-1) + exp(khat_t)
+
+18. e_t = 1 / (1 + exp(e_t))
+
+e_t = (0, 1)
+
+19. pi_t^j = exp(pi_t^j) / (sum(exp(pi_t^jj), jj = 1 .. M))
+
+pi_t^j = (0, 1)
+sum(pi^j) = 1
+
+20. u_t^j = u_t^j
+
+u_t^j = R
+
+21. o_t^j = exp(o_t^j)
+
+o_t^j > 0
+
+22. p_t^j = tanh(p_t^j)
+
+p_t^j = (-1, 1)
